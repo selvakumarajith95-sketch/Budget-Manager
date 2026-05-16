@@ -1359,6 +1359,32 @@
     </style>
 </head>
 <body>
+
+<div id="authSection" style="background:#ffffff;padding:20px;margin-bottom:20px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.1);max-width:500px;margin-left:auto;margin-right:auto;">
+  <h2 style="margin-bottom:15px;">🔐 User Login</h2>
+
+  <input type="email" id="email" placeholder="Email"
+    style="width:100%;padding:12px;margin-bottom:10px;border:1px solid #ccc;border-radius:8px;">
+
+  <input type="password" id="password" placeholder="Password"
+    style="width:100%;padding:12px;margin-bottom:10px;border:1px solid #ccc;border-radius:8px;">
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <button onclick="registerUser()" style="padding:10px 16px;border:none;background:#0f766e;color:white;border-radius:8px;cursor:pointer;">
+      Register
+    </button>
+
+    <button onclick="loginUser()" style="padding:10px 16px;border:none;background:#2563eb;color:white;border-radius:8px;cursor:pointer;">
+      Login
+    </button>
+
+    <button onclick="logoutUser()" style="padding:10px 16px;border:none;background:#dc2626;color:white;border-radius:8px;cursor:pointer;">
+      Logout
+    </button>
+  </div>
+</div>
+
+
     <div class="container">
         <header>
             <h1>💰 Daily Budget Tracker</h1>
@@ -2417,5 +2443,129 @@ function switchAnalyticsTab(tabName) {
 
         APP.init();
     </script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
+  authDomain: "budget-manager-8d41d.firebaseapp.com",
+  projectId: "budget-manager-8d41d",
+  storageBucket: "budget-manager-8d41d.firebasestorage.app",
+  messagingSenderId: "621042299694",
+  appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.auth = auth;
+window.db = db;
+window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+window.signOut = signOut;
+window.onAuthStateChanged = onAuthStateChanged;
+window.setDoc = setDoc;
+window.doc = doc;
+window.getDoc = getDoc;
+
+</script>
+
+<script>
+
+async function registerUser() {
+
+  const email =
+    document.getElementById("email").value;
+
+  const password =
+    document.getElementById("password").value;
+
+  try {
+
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    alert("User Registered!");
+
+  } catch(error) {
+
+    alert(error.message);
+
+  }
+}
+
+async function loginUser() {
+
+  const email =
+    document.getElementById("email").value;
+
+  const password =
+    document.getElementById("password").value;
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    alert("Login Success!");
+
+  } catch(error) {
+
+    alert(error.message);
+
+  }
+}
+
+async function logoutUser() {
+
+  await signOut(auth);
+
+  alert("Logged out");
+
+}
+
+onAuthStateChanged(auth, (user) => {
+
+  if(user) {
+
+    console.log("Logged in:", user.email);
+
+  } else {
+
+    console.log("Logged out");
+
+  }
+
+});
+
+</script>
+
 </body>
 </html>
