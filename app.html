@@ -1690,9 +1690,15 @@
 
         // Firestore service
         window.firestoreService = {
+            getCurrentUserId() {
+  const user = auth.currentUser;
+  return user ? user.uid : null;
+},
             async loadBudgetData() {
                 try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
+const userId = this.getCurrentUserId();
+if (!userId) return [];
+const docRef = doc(db, "users", userId, "budgetData", "entries");
                     const docSnap = await getDoc(docRef);
                     return docSnap.exists() ? docSnap.data().entries || [] : [];
                 } catch (error) {
@@ -1703,7 +1709,9 @@
 
             async saveBudgetData(data) {
                 try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
+const userId = this.getCurrentUserId();
+if (!userId) return;
+const docRef = doc(db, "users", userId, "budgetData", "entries");
                     await setDoc(docRef, {
                         entries: data,
                         updatedAt: new Date().toISOString()
@@ -1716,7 +1724,9 @@
 
             async loadLoanTargets() {
                 try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
+const userId = this.getCurrentUserId();
+if (!userId) return {};
+const docRef = doc(db, "users", userId, "budgetData", "loanTargets");
                     const docSnap = await getDoc(docRef);
                     return docSnap.exists() ? docSnap.data().targets || {} : {};
                 } catch (error) {
@@ -1727,7 +1737,9 @@
 
             async saveLoanTargets(targets) {
                 try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
+const userId = this.getCurrentUserId();
+if (!userId) return;
+const docRef = doc(db, "users", userId, "budgetData", "loanTargets");
                     await setDoc(docRef, {
                         targets,
                         updatedAt: new Date().toISOString()
