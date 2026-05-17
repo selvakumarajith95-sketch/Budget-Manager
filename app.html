@@ -2532,12 +2532,12 @@ window.logoutUser = async function () {
         } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "REPLACE_API_KEY",
-            authDomain: "REPLACE_PROJECT.firebaseapp.com",
-            projectId: "REPLACE_PROJECT_ID",
-            storageBucket: "REPLACE_PROJECT.appspot.com",
-            messagingSenderId: "REPLACE_SENDER_ID",
-            appId: "REPLACE_APP_ID"
+ apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
+  authDomain: "budget-manager-8d41d.firebaseapp.com",
+  projectId: "budget-manager-8d41d",
+  storageBucket: "budget-manager-8d41d.firebasestorage.app",
+  messagingSenderId: "621042299694",
+  appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -2671,12 +2671,12 @@ window.logoutUser = async function() {
         } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "REPLACE_API_KEY",
-            authDomain: "REPLACE_PROJECT.firebaseapp.com",
-            projectId: "REPLACE_PROJECT_ID",
-            storageBucket: "REPLACE_PROJECT.appspot.com",
-            messagingSenderId: "REPLACE_SENDER_ID",
-            appId: "REPLACE_APP_ID"
+ apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
+  authDomain: "budget-manager-8d41d.firebaseapp.com",
+  projectId: "budget-manager-8d41d",
+  storageBucket: "budget-manager-8d41d.firebasestorage.app",
+  messagingSenderId: "621042299694",
+  appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -2751,14 +2751,14 @@ function logout() {
     if (typeof signOut === 'function' && typeof auth !== 'undefined') {
         signOut(auth)
             .then(() => {
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             })
             .catch((error) => {
                 console.error('Logout Error:', error);
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             });
     } else {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
 }
 
