@@ -1706,31 +1706,29 @@
             currentAnalyticsPerson: null,
             loanTargets: {},
 
-            init() {
-                this.loadData();
-                this.loadLoanTargets();
+            async init() {
+                await this.loadData();
+                await this.loadLoanTargets();
                 this.setTodayDate();
                 this.setupEventListeners();
                 this.render();
                 document.getElementById('monthSelect').value = this.getCurrentMonth();
             },
 
-            loadData() {
-                const saved = localStorage.getItem('budgetData');
-                this.data = saved ? JSON.parse(saved) : [];
+            async loadData() {
+                this.data = await window.firestoreService.loadBudgetData();
             },
 
-            loadLoanTargets() {
-                const saved = localStorage.getItem('loanTargets');
-                this.loanTargets = saved ? JSON.parse(saved) : {};
+            async loadLoanTargets() {
+                this.loanTargets = await window.firestoreService.loadLoanTargets();
             },
 
-            saveLoanTargets() {
-                localStorage.setItem('loanTargets', JSON.stringify(this.loanTargets));
+            async saveLoanTargets() {
+                await window.firestoreService.saveLoanTargets(this.loanTargets);
             },
 
-            saveData() {
-                localStorage.setItem('budgetData', JSON.stringify(this.data));
+            async saveData() {
+                await window.firestoreService.saveBudgetData(this.data);
             },
 
             setTodayDate() {
@@ -2415,9 +2413,92 @@ function switchAnalyticsTab(tabName) {
             if (e.target.id === 'addModal') closeAddModal();
         });
 
-        APP.init();
+        window.addEventListener('load', async () => { await APP.init(); });
     </script>
-<!-- Add this section before </body> in your existing index.html -->
+<!-- Add this section before 
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getFirestore, 
+            doc, 
+            getDoc, 
+            setDoc 
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "REPLACE_API_KEY",
+            authDomain: "REPLACE_PROJECT.firebaseapp.com",
+            projectId: "REPLACE_PROJECT_ID",
+            storageBucket: "REPLACE_PROJECT.appspot.com",
+            messagingSenderId: "REPLACE_SENDER_ID",
+            appId: "REPLACE_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.firestoreService = {
+            async loadBudgetData() {
+                try {
+                    const docRef = doc(db, "budgetTracker", "mainData");
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        return docSnap.data().entries || [];
+                    }
+
+                    return [];
+                } catch (error) {
+                    console.error("Error loading budget data:", error);
+                    return [];
+                }
+            },
+
+            async saveBudgetData(data) {
+                try {
+                    const docRef = doc(db, "budgetTracker", "mainData");
+                    await setDoc(docRef, {
+                        entries: data,
+                        updatedAt: new Date().toISOString()
+                    });
+                } catch (error) {
+                    console.error("Error saving budget data:", error);
+                    alert("Failed to sync data with Firestore.");
+                }
+            },
+
+            async loadLoanTargets() {
+                try {
+                    const docRef = doc(db, "budgetTracker", "loanTargets");
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        return docSnap.data().targets || {};
+                    }
+
+                    return {};
+                } catch (error) {
+                    console.error("Error loading loan targets:", error);
+                    return {};
+                }
+            },
+
+            async saveLoanTargets(targets) {
+                try {
+                    const docRef = doc(db, "budgetTracker", "loanTargets");
+                    await setDoc(docRef, {
+                        targets,
+                        updatedAt: new Date().toISOString()
+                    });
+                } catch (error) {
+                    console.error("Error saving loan targets:", error);
+                }
+            }
+        };
+    </script>
+
+</body> in your existing index.html -->
 
 <button onclick="logoutUser()" 
 style="position:fixed;top:20px;right:20px;padding:10px 16px;border:none;background:#dc2626;color:white;border-radius:8px;cursor:pointer;z-index:9999;">
@@ -2438,12 +2519,12 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
-  authDomain: "budget-manager-8d41d.firebaseapp.com",
-  projectId: "budget-manager-8d41d",
-  storageBucket: "budget-manager-8d41d.firebasestorage.app",
-  messagingSenderId: "621042299694",
-  appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
+  apiKey: "",
+  authDomain: "",
+  projectId:,
+  storageBucket:,
+  messagingSenderId:,
+  appId: 
 
 };
 
@@ -2474,5 +2555,88 @@ window.logoutUser = async function() {
 }
 
 </script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getFirestore, 
+            doc, 
+            getDoc, 
+            setDoc 
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+              apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
+              authDomain: "budget-manager-8d41d.firebaseapp.com",
+              projectId: "budget-manager-8d41d",
+              storageBucket: "budget-manager-8d41d.firebasestorage.app",
+              messagingSenderId: "621042299694",
+              appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.firestoreService = {
+            async loadBudgetData() {
+                try {
+                    const docRef = doc(db, "budgetTracker", "mainData");
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        return docSnap.data().entries || [];
+                    }
+
+                    return [];
+                } catch (error) {
+                    console.error("Error loading budget data:", error);
+                    return [];
+                }
+            },
+
+            async saveBudgetData(data) {
+                try {
+                    const docRef = doc(db, "budgetTracker", "mainData");
+                    await setDoc(docRef, {
+                        entries: data,
+                        updatedAt: new Date().toISOString()
+                    });
+                } catch (error) {
+                    console.error("Error saving budget data:", error);
+                    alert("Failed to sync data with Firestore.");
+                }
+            },
+
+            async loadLoanTargets() {
+                try {
+                    const docRef = doc(db, "budgetTracker", "loanTargets");
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        return docSnap.data().targets || {};
+                    }
+
+                    return {};
+                } catch (error) {
+                    console.error("Error loading loan targets:", error);
+                    return {};
+                }
+            },
+
+            async saveLoanTargets(targets) {
+                try {
+                    const docRef = doc(db, "budgetTracker", "loanTargets");
+                    await setDoc(docRef, {
+                        targets,
+                        updatedAt: new Date().toISOString()
+                    });
+                } catch (error) {
+                    console.error("Error saving loan targets:", error);
+                }
+            }
+        };
+    </script>
+
 </body>
 </html>
