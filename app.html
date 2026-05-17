@@ -196,6 +196,27 @@
             transform: translateY(-2px);
         }
 
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 16px;
+            border: none;
+            background: #dc2626;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 9999;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
         .loan-card {
             background: var(--surface-alt);
             border-radius: 12px;
@@ -809,42 +830,40 @@
             display: flex;
         }
 
-        
-.modal-content {
-    background: var(--surface);
-    border-radius: 14px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-    display: flex;
-    flex-direction: column;
-    width: 96%;
-    max-width: 720px;
-    max-height: 92vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    animation: slideDown 0.25s ease-out;
-}
+        .modal-content {
+            background: var(--surface);
+            border-radius: 14px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            width: 96%;
+            max-width: 720px;
+            max-height: 92vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            animation: slideDown 0.25s ease-out;
+        }
 
-#addModal .modal-content {
-    padding-bottom: 20px;
-}
+        #addModal .modal-content {
+            padding-bottom: 20px;
+        }
 
-#addModal form {
-    padding: 24px;
-}
+        #addModal form {
+            padding: 24px;
+        }
 
-#addModal .modal-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+        #addModal .modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
-#addModal .modal-footer {
-    position: sticky;
-    bottom: 0;
-    background: var(--surface);
-    padding-top: 16px;
-}
-
+        #addModal .modal-footer {
+            position: sticky;
+            bottom: 0;
+            background: var(--surface);
+            padding-top: 16px;
+        }
 
         .modal-content.minimized {
             height: auto;
@@ -856,20 +875,18 @@
             display: none;
         }
 
-        
-.modal-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    color: white;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
+        .modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
         .modal-header .title-section {
             display: flex;
@@ -888,41 +905,39 @@
             margin-top: 4px;
         }
 
-        
-.window-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .window-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.window-btn {
-    width: 38px;
-    height: 38px;
-    border: none;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.15);
-    color: white;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer !important;
-    transition: all 0.2s ease;
-    user-select: none;
-}
+        .window-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer !important;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
 
-.window-btn * {
-    cursor: pointer !important;
-}
+        .window-btn * {
+            cursor: pointer !important;
+        }
 
-.window-btn:hover {
-    background: rgba(255,255,255,0.28);
-}
+        .window-btn:hover {
+            background: rgba(255,255,255,0.28);
+        }
 
-.window-btn.close-btn:hover {
-    background: #dc2626;
-}
-
+        .window-btn.close-btn:hover {
+            background: #dc2626;
+        }
 
         .modal-body {
             display: flex;
@@ -1026,7 +1041,6 @@
             }
         }
 
-        /* Analytics Dashboard Styles */
         .analytics-dashboard {
             display: grid;
             gap: 20px;
@@ -1141,7 +1155,6 @@
             font-weight: 600;
         }
 
-        /* Target Date Section */
         .target-date-card {
             background: linear-gradient(135deg, #fef3c7, #fef08a);
             border: 1px solid #fcd34d;
@@ -1235,85 +1248,61 @@
             color: var(--text-secondary);
         }
 
-        .loan-tabs {
+        .transactions-wrapper {
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .tab-btn {
-            padding: 10px 16px;
-            border: 1px solid var(--border);
+        .transactions-header {
             background: var(--surface-alt);
-            border-radius: 8px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .transactions-header:hover {
+            background: #e8f3f2;
+        }
+
+        .transactions-title {
+            font-size: 1.05em;
+            font-weight: 700;
+        }
+
+        .transactions-toggle {
+            font-size: 1.2em;
+            transition: transform 0.25s ease;
+        }
+
+        .transactions-controls {
+            background: var(--surface-alt);
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.25s ease;
+        }
+
+        .transactions-controls.hidden {
+            display: none;
+        }
+
+        .select-view-section {
+            margin-top: 20px;
+        }
+
+        .select-view-section label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        
-.transactions-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.transactions-header {
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.transactions-header:hover {
-    background: #e8f3f2;
-}
-
-.transactions-title {
-    font-size: 1.05em;
-    font-weight: 700;
-}
-
-.transactions-toggle {
-    font-size: 1.2em;
-    transition: transform 0.25s ease;
-}
-
-.transactions-controls {
-    background: var(--surface-alt);
-    border-radius: 14px;
-    padding: 20px;
-    border: 1px solid var(--border);
-    animation: fadeIn 0.25s ease;
-}
-
-.transactions-controls.hidden {
-    display: none;
-}
-
-.select-view-section {
-    margin-top: 20px;
-}
-
-.select-view-section label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
             #addModal .modal-content {
                 width: 100%;
                 max-width: 100%;
@@ -1359,6 +1348,9 @@
     </style>
 </head>
 <body>
+    <!-- Logout Button - FIXED -->
+    <button class="logout-btn" onclick="logoutUser()">Logout</button>
+
     <div class="container">
         <header>
             <h1>💰 Daily Budget Tracker</h1>
@@ -1510,7 +1502,6 @@
                     <p>Manage and analyze loan transactions</p>
                 </div>
                 <div class="window-controls">
-                    
                     <button class="window-btn" onclick="maximizeAnalyticsWindow();" title="Maximize">
                         <span style="font-size: 0.8em;">□</span>
                     </button>
@@ -1519,35 +1510,25 @@
             </div>
 
             <div class="modal-body">
-                <!-- Left Sidebar Navigation -->
                 <div class="modal-sidebar">
-                    
-<div class="sidebar-nav">
-
-    <div class="nav-item active" onclick="switchAnalyticsTab('dashboard')">
-        <span class="icon">📊</span>
-        <span>Analytics</span>
-    </div>
-
-    <div class="nav-item" onclick="switchAnalyticsTab('transactions')">
-        <span class="icon">📋</span>
-        <span>Transactions</span>
-    </div>
-
-    <div class="nav-item" onclick="switchAnalyticsTab('target-date')">
-        <span class="icon">⏰</span>
-        <span>Set Target Date</span>
-    </div>
-
-</div>
-
-</div>
-
-<!-- Main Content Area -->
+                    <div class="sidebar-nav">
+                        <div class="nav-item active" onclick="switchAnalyticsTab('dashboard')">
+                            <span class="icon">📊</span>
+                            <span>Analytics</span>
+                        </div>
+                        <div class="nav-item" onclick="switchAnalyticsTab('transactions')">
+                            <span class="icon">📋</span>
+                            <span>Transactions</span>
+                        </div>
+                        <div class="nav-item" onclick="switchAnalyticsTab('target-date')">
+                            <span class="icon">⏰</span>
+                            <span>Set Target Date</span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="modal-main">
                     <div class="modal-content-area">
-                        <!-- Dashboard Section -->
                         <div id="analyticsTab-dashboard" class="content-section active">
                             <div class="analytics-dashboard">
                                 <div class="dashboard-header">
@@ -1572,7 +1553,6 @@
                             </div>
                         </div>
 
-                        <!-- Target Date Section -->
                         <div id="analyticsTab-target-date" class="content-section">
                             <div class="target-date-card" id="targetDateSection">
                                 <h4>⏰ Set Target Return Date</h4>
@@ -1584,120 +1564,182 @@
                             </div>
                         </div>
 
-                        <!-- Transactions Section -->
-                        
-<div id="analyticsTab-transactions" class="content-section">
+                        <div id="analyticsTab-transactions" class="content-section">
+                            <div class="transactions-wrapper">
+                                <div class="transactions-header" onclick="toggleTransactionControls()">
+                                    <div class="transactions-title">📋 Transactions</div>
+                                    <div class="transactions-toggle" id="transactionToggleIcon">▼</div>
+                                </div>
 
-    <div class="transactions-wrapper">
+                                <div class="transactions-controls hidden" id="transactionControls">
+                                    <div class="filter-grid">
+                                        <div class="filter-group">
+                                            <label>Date From</label>
+                                            <input type="date" id="filterDateFrom">
+                                        </div>
+                                        <div class="filter-group">
+                                            <label>Date To</label>
+                                            <input type="date" id="filterDateTo">
+                                        </div>
+                                        <div class="filter-group">
+                                            <label>Month</label>
+                                            <select id="filterMonth">
+                                                <option value="">All Months</option>
+                                                <option value="01">January</option>
+                                                <option value="02">February</option>
+                                                <option value="03">March</option>
+                                                <option value="04">April</option>
+                                                <option value="05">May</option>
+                                                <option value="06">June</option>
+                                                <option value="07">July</option>
+                                                <option value="08">August</option>
+                                                <option value="09">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                        <div class="filter-group">
+                                            <label>Type</label>
+                                            <select id="filterType">
+                                                <option value="">All Types</option>
+                                                <option value="LOAN_GIVEN">Loan Given</option>
+                                                <option value="LOAN_RECEIVED">Loan Received</option>
+                                            </select>
+                                        </div>
+                                        <div class="filter-group">
+                                            <label>Status</label>
+                                            <select id="filterStatus">
+                                                <option value="">All Status</option>
+                                                <option value="on-time">On Time</option>
+                                                <option value="delayed">Delayed</option>
+                                                <option value="pending">Pending</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-        <div class="transactions-header" onclick="toggleTransactionControls()">
+                                    <div class="select-view-section">
+                                        <label>Select View</label>
+                                        <select id="analyticsViewMode" onchange="renderAnalyticsTable()">
+                                            <option value="table">Table View</option>
+                                            <option value="compact">Compact View</option>
+                                        </select>
+                                    </div>
 
-            <div class="transactions-title">
-                📋 Transactions
-            </div>
+                                    <div class="filter-actions">
+                                        <button class="btn btn-small btn-filter" onclick="applyFilters()">Apply Filters</button>
+                                        <button class="btn btn-small btn-reset" onclick="resetAnalyticsFilters()">Reset</button>
+                                        <button class="btn btn-small btn-export" onclick="exportAnalyticsToCSV()">📥 Export CSV</button>
+                                    </div>
+                                </div>
 
-            <div class="transactions-toggle" id="transactionToggleIcon">
-                ▼
-            </div>
-
-        </div>
-
-        <div class="transactions-controls hidden" id="transactionControls">
-
-            <div class="filter-grid">
-
-                <div class="filter-group">
-                    <label>Date From</label>
-                    <input type="date" id="filterDateFrom">
-                </div>
-
-                <div class="filter-group">
-                    <label>Date To</label>
-                    <input type="date" id="filterDateTo">
-                </div>
-
-                <div class="filter-group">
-                    <label>Month</label>
-                    <select id="filterMonth">
-                        <option value="">All Months</option>
-                        <option value="01">January</option>
-                        <option value="02">February</option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>Type</label>
-                    <select id="filterType">
-                        <option value="">All Types</option>
-                        <option value="LOAN_GIVEN">Loan Given</option>
-                        <option value="LOAN_RECEIVED">Loan Received</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>Status</label>
-                    <select id="filterStatus">
-                        <option value="">All Status</option>
-                        <option value="on-time">On Time</option>
-                        <option value="delayed">Delayed</option>
-                        <option value="pending">Pending</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="select-view-section">
-
-                <label>Select View</label>
-
-                <select id="analyticsViewMode" onchange="renderAnalyticsTable()">
-                    <option value="table">Table View</option>
-                    <option value="compact">Compact View</option>
-                </select>
-
-            </div>
-
-            <div class="filter-actions">
-
-                <button class="btn btn-small btn-filter" onclick="applyFilters()">
-                    Apply Filters
-                </button>
-
-                <button class="btn btn-small btn-reset" onclick="resetAnalyticsFilters()">
-                    Reset
-                </button>
-
-                <button class="btn btn-small btn-export" onclick="exportAnalyticsToCSV()">
-                    📥 Export CSV
-                </button>
-
-            </div>
-
-        </div>
-
-        <div id="analyticsTableContainer"></div>
-
-    </div>
-
-</div>
-
+                                <div id="analyticsTableContainer"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
 
+    <!-- Firebase SDK - Single Instance -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { 
+            getFirestore, 
+            doc, 
+            getDoc, 
+            setDoc 
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
+            authDomain: "budget-manager-8d41d.firebaseapp.com",
+            projectId: "budget-manager-8d41d",
+            storageBucket: "budget-manager-8d41d.firebasestorage.app",
+            messagingSenderId: "621042299694",
+            appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Check authentication state
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "index.html";
+            }
+        });
+
+        // Logout function - FIXED
+        window.logoutUser = async function() {
+            try {
+                await signOut(auth);
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Logout error:", error);
+                alert("Error logging out. Please try again.");
+            }
+        };
+
+        // Firestore service
+        window.firestoreService = {
+            async loadBudgetData() {
+                try {
+                    const docRef = doc(db, "budgetTracker", "mainData");
+                    const docSnap = await getDoc(docRef);
+                    return docSnap.exists() ? docSnap.data().entries || [] : [];
+                } catch (error) {
+                    console.error("Error loading budget data:", error);
+                    return [];
+                }
+            },
+
+            async saveBudgetData(data) {
+                try {
+                    const docRef = doc(db, "budgetTracker", "mainData");
+                    await setDoc(docRef, {
+                        entries: data,
+                        updatedAt: new Date().toISOString()
+                    });
+                } catch (error) {
+                    console.error("Error saving budget data:", error);
+                    alert("Failed to sync data with Firestore.");
+                }
+            },
+
+            async loadLoanTargets() {
+                try {
+                    const docRef = doc(db, "budgetTracker", "loanTargets");
+                    const docSnap = await getDoc(docRef);
+                    return docSnap.exists() ? docSnap.data().targets || {} : {};
+                } catch (error) {
+                    console.error("Error loading loan targets:", error);
+                    return {};
+                }
+            },
+
+            async saveLoanTargets(targets) {
+                try {
+                    const docRef = doc(db, "budgetTracker", "loanTargets");
+                    await setDoc(docRef, {
+                        targets,
+                        updatedAt: new Date().toISOString()
+                    });
+                } catch (error) {
+                    console.error("Error saving loan targets:", error);
+                }
+            }
+        };
+    </script>
+
+    <!-- Main App Script -->
     <script>
         const APP = {
             data: [],
@@ -2016,8 +2058,6 @@
             }
         };
 
-        
-
         function maximizeAnalyticsWindow() {
             const modal = document.getElementById('analyticsModal').querySelector('.modal-content');
             if (modal.style.height === '100vh') {
@@ -2032,40 +2072,33 @@
             }
         }
 
-        
-function toggleTransactionControls() {
+        function toggleTransactionControls() {
+            const controls = document.getElementById('transactionControls');
+            const icon = document.getElementById('transactionToggleIcon');
 
-    const controls = document.getElementById('transactionControls');
-    const icon = document.getElementById('transactionToggleIcon');
+            controls.classList.toggle('hidden');
 
-    controls.classList.toggle('hidden');
+            if (controls.classList.contains('hidden')) {
+                icon.innerHTML = '▼';
+            } else {
+                icon.innerHTML = '▲';
+            }
+        }
 
-    if (controls.classList.contains('hidden')) {
-        icon.innerHTML = '▼';
-    } else {
-        icon.innerHTML = '▲';
-    }
-}
-
-
-function switchAnalyticsTab(tabName) {
-            // Hide all content sections
+        function switchAnalyticsTab(tabName) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
 
-            // Remove active class from all nav items
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
 
-            // Show selected section
             const selectedSection = document.getElementById('analyticsTab-' + tabName);
             if (selectedSection) {
                 selectedSection.classList.add('active');
             }
 
-            // Mark selected nav item as active
             event.target.closest('.nav-item').classList.add('active');
         }
 
@@ -2117,9 +2150,7 @@ function switchAnalyticsTab(tabName) {
             const given = personData.filter(e => e.type === 'LOAN_GIVEN').reduce((sum, e) => sum + e.amount, 0);
             const received = personData.filter(e => e.type === 'LOAN_RECEIVED').reduce((sum, e) => sum + e.amount, 0);
             const pending = given - received;
-            const profit = (received - given);
 
-            // Calculate percentages
             const givenPercent = given > 0 ? ((received / given) * 100).toFixed(1) : 0;
             const repaymentPercent = given > 0 ? Math.min((received / given) * 100, 100) : 0;
 
@@ -2141,7 +2172,6 @@ function switchAnalyticsTab(tabName) {
                 </div>
             `;
 
-            // Update repayment progress
             document.getElementById('repaymentAmount').textContent = APP.formatCurrency(pending > 0 ? pending : 0);
             document.getElementById('repaymentProgress').style.width = repaymentPercent + '%';
             document.getElementById('repaymentPercent').textContent = repaymentPercent.toFixed(0) + '%';
@@ -2415,300 +2445,5 @@ function switchAnalyticsTab(tabName) {
 
         window.addEventListener('load', async () => { await APP.init(); });
     </script>
-<!-- Add this section before 
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { 
-            getFirestore, 
-            doc, 
-            getDoc, 
-            setDoc 
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "REPLACE_API_KEY",
-            authDomain: "REPLACE_PROJECT.firebaseapp.com",
-            projectId: "REPLACE_PROJECT_ID",
-            storageBucket: "REPLACE_PROJECT.appspot.com",
-            messagingSenderId: "REPLACE_SENDER_ID",
-            appId: "REPLACE_APP_ID"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.firestoreService = {
-            async loadBudgetData() {
-                try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        return docSnap.data().entries || [];
-                    }
-
-                    return [];
-                } catch (error) {
-                    console.error("Error loading budget data:", error);
-                    return [];
-                }
-            },
-
-            async saveBudgetData(data) {
-                try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
-                    await setDoc(docRef, {
-                        entries: data,
-                        updatedAt: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error saving budget data:", error);
-                    alert("Failed to sync data with Firestore.");
-                }
-            },
-
-            async loadLoanTargets() {
-                try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        return docSnap.data().targets || {};
-                    }
-
-                    return {};
-                } catch (error) {
-                    console.error("Error loading loan targets:", error);
-                    return {};
-                }
-            },
-
-            async saveLoanTargets(targets) {
-                try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
-                    await setDoc(docRef, {
-                        targets,
-                        updatedAt: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error saving loan targets:", error);
-                }
-            }
-        };
-    </script>
-
-
-<!-- Logout Button -->
-<button onclick="logoutUser()" 
-style="position:fixed;top:20px;right:20px;padding:10px 16px;border:none;background:#dc2626;color:white;border-radius:8px;cursor:pointer;z-index:9999;">
-Logout
-</button>
-
-<script type="module">
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-window.logoutUser = async function () {
-    try {
-        const auth = getAuth();
-        await signOut(auth);
-        alert("Logged out successfully");
-        window.location.reload();
-    } catch (error) {
-        console.error("Logout failed:", error);
-        alert("Logout failed");
-    }
-};
-</script>
-
-<!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { 
-            getFirestore, 
-            doc, 
-            getDoc, 
-            setDoc 
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const firebaseConfig = {
- apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
-  authDomain: "budget-manager-8d41d.firebaseapp.com",
-  projectId: "budget-manager-8d41d",
-  storageBucket: "budget-manager-8d41d.firebasestorage.app",
-  messagingSenderId: "621042299694",
-  appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.firestoreService = {
-            async loadBudgetData() {
-                try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        return docSnap.data().entries || [];
-                    }
-
-                    return [];
-                } catch (error) {
-                    console.error("Error loading budget data:", error);
-                    return [];
-                }
-            },
-
-            async saveBudgetData(data) {
-                try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
-                    await setDoc(docRef, {
-                        entries: data,
-                        updatedAt: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error saving budget data:", error);
-                    alert("Failed to sync data with Firestore.");
-                }
-            },
-
-            async loadLoanTargets() {
-                try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        return docSnap.data().targets || {};
-                    }
-
-                    return {};
-                } catch (error) {
-                    console.error("Error loading loan targets:", error);
-                    return {};
-                }
-            },
-
-            async saveLoanTargets(targets) {
-                try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
-                    await setDoc(docRef, {
-                        targets,
-                        updatedAt: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error saving loan targets:", error);
-                }
-            }
-        };
-    </script>
-
-</body>
-
-<button onclick="logoutUser()" 
-style="position:fixed;top:20px;right:20px;padding:10px 16px;border:none;background:#dc2626;color:white;border-radius:8px;cursor:pointer;z-index:9999;">
-Logout
-</button>
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { 
-            getFirestore, 
-            doc, 
-            getDoc, 
-            setDoc 
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const firebaseConfig = {
- apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
-  authDomain: "budget-manager-8d41d.firebaseapp.com",
-  projectId: "budget-manager-8d41d",
-  storageBucket: "budget-manager-8d41d.firebasestorage.app",
-  messagingSenderId: "621042299694",
-  appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.firestoreService = {
-            async loadBudgetData() {
-                try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        return docSnap.data().entries || [];
-                    }
-
-                    return [];
-                } catch (error) {
-                    console.error("Error loading budget data:", error);
-                    return [];
-                }
-            },
-
-            async saveBudgetData(data) {
-                try {
-                    const docRef = doc(db, "budgetTracker", "mainData");
-                    await setDoc(docRef, {
-                        entries: data,
-                        updatedAt: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error saving budget data:", error);
-                    alert("Failed to sync data with Firestore.");
-                }
-            },
-
-            async loadLoanTargets() {
-                try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
-                    const docSnap = await getDoc(docRef);
-
-                    if (docSnap.exists()) {
-                        return docSnap.data().targets || {};
-                    }
-
-                    return {};
-                } catch (error) {
-                    console.error("Error loading loan targets:", error);
-                    return {};
-                }
-            },
-
-            async saveLoanTargets(targets) {
-                try {
-                    const docRef = doc(db, "budgetTracker", "loanTargets");
-                    await setDoc(docRef, {
-                        targets,
-                        updatedAt: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error saving loan targets:", error);
-                }
-            }
-        };
-    </script>
-
 </body>
 </html>
-
-<script>
-
-function logout() {
-    if (typeof signOut === 'function' && typeof auth !== 'undefined') {
-        signOut(auth)
-            .then(() => {
-                window.location.href = 'index.html';
-            })
-            .catch((error) => {
-                console.error('Logout Error:', error);
-                window.location.href = 'index.html';
-            });
-    } else {
-        window.location.href = 'index.html';
-    }
-}
-
-</script>
