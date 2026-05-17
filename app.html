@@ -2106,6 +2106,7 @@
             APP.currentAnalyticsPerson = personName;
             document.getElementById('analyticsPerson').textContent = `📊 Loan Analytics: ${personName}`;
             document.getElementById('analyticsModal').classList.add('active');
+            document.querySelector('.logout-btn').style.display = 'none';
             renderAnalytics();
             showTargetDateSection();
             resetAnalyticsFilters();
