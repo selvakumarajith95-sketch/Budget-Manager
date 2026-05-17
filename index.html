@@ -1,166 +1,672 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-  <title>Login</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Tracker - Login</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f766e;
+      --primary-light: #14b8a6;
+      --primary-dark: #0d5048;
+      --accent: #f97316;
+      --bg-light: #f8fafc;
+      --surface: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --danger: #dc2626;
+    }
 
     body {
-      font-family: Arial;
-      background: #f3f4f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background shapes */
+    .bg-shape-1 {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      top: -100px;
+      left: -100px;
+      animation: float1 20s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .bg-shape-2 {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      background: rgba(249, 115, 22, 0.05);
+      border-radius: 50%;
+      bottom: -50px;
+      right: -50px;
+      animation: float2 25s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-40px, -40px); }
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .welcome-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      min-width: 300px;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .welcome-section h1 {
+      font-size: 42px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .welcome-section p {
+      font-size: 16px;
+      opacity: 0.95;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .features {
+      list-style: none;
+    }
+
+    .features li {
+      font-size: 15px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.9;
+    }
+
+    .features li:before {
+      content: "✓";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .login-section {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .login-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 320px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: var(--surface);
+      padding: 48px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .login-box h2 {
+      font-size: 28px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .login-box .subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: var(--bg-light);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
     }
 
-    button {
-      width: 100%;
-      padding: 12px;
+    input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    }
+
+    input:hover {
+      border-color: var(--primary-light);
+    }
+
+    .form-group input {
+      transition: all 0.3s ease;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button-group button {
+      flex: 1;
+      padding: 14px;
       border: none;
-      background: #2563eb;
-      color: white;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-bottom: 10px;
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    button:hover {
-      background: #1e40af;
+    .btn-login {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 4px 15px rgba(15, 118, 110, 0.3);
     }
 
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(15, 118, 110, 0.4);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .btn-register {
+      background: var(--bg-light);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      font-weight: 700;
+    }
+
+    .btn-register:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-register:active {
+      transform: translateY(0);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 32px 0;
+      gap: 16px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider span {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    .footer-text a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .footer-text a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading.active {
+      display: flex;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .alert {
+      padding: 16px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      display: none;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .alert.success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .alert.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 16px;
+      top: 38px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    .toggle-password:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .welcome-section {
+        text-align: center;
+      }
+
+      .welcome-section h1 {
+        font-size: 32px;
+      }
+
+      .login-box {
+        padding: 36px 24px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .bg-shape-1,
+      .bg-shape-2 {
+        display: none;
+      }
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 38px;
+      font-size: 20px;
+      color: var(--primary);
+      pointer-events: none;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group input {
+      padding-left: 48px;
+    }
   </style>
-
 </head>
-
 <body>
+  <!-- Animated background shapes -->
+  <div class="bg-shape-1"></div>
+  <div class="bg-shape-2"></div>
 
-  <div class="login-box">
+  <div class="container">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <div class="logo">💰</div>
+      <h1>Budget Tracker</h1>
+      <p>Take control of your finances and build better spending habits. Track expenses, manage loans, and achieve your financial goals.</p>
+      <ul class="features">
+        <li>Track daily expenses & income</li>
+        <li>Manage loans with friends</li>
+        <li>Beautiful analytics & reports</li>
+        <li>Secure cloud storage</li>
+      </ul>
+    </div>
 
-    <h2>Budget Tracker Login</h2>
+    <!-- Login Section -->
+    <div class="login-section">
+      <div class="login-box">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Login to your account to continue</p>
 
-    <input type="email"
-           id="authEmail"
-           placeholder="Email">
+        <div class="alert" id="alertBox"></div>
 
-    <input type="password"
-           id="authPassword"
-           placeholder="Password">
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="authEmail">Email Address</label>
+            <span class="input-icon">✉️</span>
+            <input 
+              type="email"
+              id="authEmail"
+              placeholder="your@email.com"
+              required>
+          </div>
 
-    <button onclick="registerUser()">
-      Register
-    </button>
+          <div class="form-group">
+            <label for="authPassword">Password</label>
+            <span class="input-icon">🔒</span>
+            <input 
+              type="password"
+              id="authPassword"
+              placeholder="••••••••"
+              required>
+            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+          </div>
 
-    <button onclick="loginUser()">
-      Login
-    </button>
+          <div class="button-group">
+            <button type="button" class="btn-register" onclick="handleRegister(event)">
+              Create Account
+            </button>
+            <button type="submit" class="btn-login">
+              Sign In
+            </button>
+          </div>
+        </form>
 
+        <div class="divider">
+          <span>Demo Credentials</span>
+        </div>
+
+        <p class="footer-text">
+          📧 test@example.com<br>
+          🔑 password123
+        </p>
+
+        <div class="footer-text">
+          Need help? <a href="javascript:void(0)">Contact support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
   </div>
 
   <script type="module">
-
-    import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
       getAuth,
       createUserWithEmailAndPassword,
-      signInWithEmailAndPassword
-    }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      signInWithEmailAndPassword,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
-
       apiKey: "AIzaSyA_MnvrnywML4wcE4VyIdVJWOi1bG9IjWc",
       authDomain: "budget-manager-8d41d.firebaseapp.com",
       projectId: "budget-manager-8d41d",
       storageBucket: "budget-manager-8d41d.firebasestorage.app",
       messagingSenderId: "621042299694",
       appId: "1:621042299694:web:617f3f8b15bc49c17580bf"
-
     };
 
     const app = initializeApp(firebaseConfig);
-
     const auth = getAuth(app);
 
-    async function registerUser() {
+    // Check if user is already logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        window.location.href = "budget_tracker_fixed.html";
+      }
+    });
 
-      const email =
-        document.getElementById("authEmail").value;
+    window.handleRegister = async function(event) {
+      event.preventDefault();
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
 
-      const password =
-        document.getElementById("authPassword").value;
+      if (!email || !password) {
+        showAlert("Please fill in all fields", "error");
+        return;
+      }
+
+      if (password.length < 6) {
+        showAlert("Password must be at least 6 characters long", "error");
+        return;
+      }
+
+      showLoading(true);
 
       try {
-
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        alert("Registration Success");
-
-      } catch(error) {
-
-        alert(error.message);
-
+        await createUserWithEmailAndPassword(auth, email, password);
+        showAlert("Account created successfully! Redirecting...", "success");
+        setTimeout(() => {
+          window.location.href = "budget_tracker_fixed.html";
+        }, 1500);
+      } catch (error) {
+        let errorMessage = error.message;
+        if (error.code === 'auth/email-already-in-use') {
+          errorMessage = "This email is already registered. Please login instead.";
+        } else if (error.code === 'auth/invalid-email') {
+          errorMessage = "Please enter a valid email address.";
+        }
+        showAlert(errorMessage, "error");
+      } finally {
+        showLoading(false);
       }
-    }
+    };
 
-    async function loginUser() {
+    window.handleLogin = async function(event) {
+      event.preventDefault();
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
 
-      const email =
-        document.getElementById("authEmail").value;
+      if (!email || !password) {
+        showAlert("Please fill in all fields", "error");
+        return;
+      }
 
-      const password =
-        document.getElementById("authPassword").value;
+      showLoading(true);
 
       try {
-
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        alert("Login Success");
-
-        window.location.href = "app.html";
-
-      } catch(error) {
-
-        alert(error.message);
-
+        await signInWithEmailAndPassword(auth, email, password);
+        showAlert("Login successful! Redirecting...", "success");
+        setTimeout(() => {
+          window.location.href = "budget_tracker_fixed.html";
+        }, 1000);
+      } catch (error) {
+        let errorMessage = error.message;
+        if (error.code === 'auth/user-not-found') {
+          errorMessage = "No account found with this email. Please register first.";
+        } else if (error.code === 'auth/wrong-password') {
+          errorMessage = "Incorrect password. Please try again.";
+        } else if (error.code === 'auth/invalid-email') {
+          errorMessage = "Please enter a valid email address.";
+        }
+        showAlert(errorMessage, "error");
+      } finally {
+        showLoading(false);
       }
+    };
+
+    window.togglePassword = function() {
+      const input = document.getElementById("authPassword");
+      const toggle = document.querySelector(".toggle-password");
+      if (input.type === "password") {
+        input.type = "text";
+        toggle.textContent = "🙈";
+      } else {
+        input.type = "password";
+        toggle.textContent = "👁️";
+      }
+    };
+
+    function showAlert(message, type) {
+      const alertBox = document.getElementById("alertBox");
+      alertBox.textContent = message;
+      alertBox.className = `alert ${type} show`;
+      setTimeout(() => {
+        alertBox.classList.remove("show");
+      }, 4000);
     }
 
-    window.registerUser = registerUser;
-    window.loginUser = loginUser;
+    function showLoading(show) {
+      document.getElementById("loading").classList.toggle("active", show);
+    }
 
+    window.showAlert = showAlert;
+    window.showLoading = showLoading;
   </script>
-
 </body>
 </html>
